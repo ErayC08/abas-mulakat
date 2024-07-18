@@ -6,7 +6,7 @@ import com.example.service.OrderService;
 
 import java.util.List;
 
-public class Main {
+public class Main1 {
     private static final OrderService orderService = new OrderService();
 
     public static void main(String[] args) {
