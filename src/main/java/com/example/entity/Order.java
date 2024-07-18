@@ -1,13 +1,15 @@
 package com.example.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
     private int number;
     private List<Item> items;
 
-    public Order(int number) {
+    public Order(int number, List<Item> items) {
         setNumber(number);
+        setItems(items);
     }
 
     public int getNumber() {
@@ -23,7 +25,19 @@ public class Order {
     }
 
     public void setItems(List<Item> items) {
-        this.items = items;
+        this.items = new ArrayList<>();
+
+        items.forEach(item -> {
+            int index = findIndexOfItem(item);
+
+            if (index == -1) {
+                this.items.add(item);
+            } else {
+                Item foundItem = this.items.get(index);
+
+                foundItem.setQuantity(foundItem.getQuantity() + item.getQuantity());
+            }
+        });
     }
 
     public double getTotalPrice() {
@@ -43,5 +57,19 @@ public class Order {
     @Override
     public int hashCode() {
         return this.number;
+    }
+
+    @Override
+    public String toString() {
+        return "Number: " + number + ", Items: " + items;
+    }
+
+    private int findIndexOfItem(Item item) {
+        for (Item next : this.items) {
+            if (next.equals(item)) {
+                return this.items.indexOf(next);
+            }
+        }
+        return -1;
     }
 }

@@ -17,7 +17,7 @@ public class OrderService {
         return orderTotalPriceMap;
     }
 
-    public double getAveragePrice(List<Order> orders) {
+    public double getAverageTotalPrice(List<Order> orders) {
         return orders.stream().mapToDouble(Order::getTotalPrice).average().getAsDouble();
     }
 

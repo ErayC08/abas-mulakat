@@ -63,4 +63,9 @@ public class Item {
     public int hashCode() {
         return this.number;
     }
+
+    @Override
+    public String toString() {
+        return "Number: " + this.number + ", Quantity: " + this.quantity + ", Unit Price: " + this.price;
+    }
 }
